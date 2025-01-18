@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Building Hierarchy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@21.0.0/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@21.0.0/dist/styles/ag-theme-balham.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primevue@3/resources/themes/lara-light-blue/theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primevue@3/resources/primevue.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons@6.0.1/primeicons.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@21.0.0/dist/ag-grid-community.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@21.0.0/dist/ag-grid-enterprise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/primevue@3/core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/primevue@3/breadcrumb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/primevue@3/button.min.js"></script>
+    <script>
+        agGrid.LicenseManager.setLicenseKey("Ardvernis_Ltd_Riskhub_1Devs13_June_2019__MTU2MDM4MDQwMDAwMA==21545ffdc411749e6b158d44cc101d60");
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="myGrid" class="ag-theme-balham"></div>
+        <div id="sidePanel">
+            <div class="side-panel-content">
+                <div class="drawer-header">
+                    <div class="breadcrumb-container">
+                        <div class="breadcrumb-item">
+                            <i class="pi pi-folder"></i>
+                            <span>Document Vault</span>
+                        </div>
+                        <i class="pi pi-angle-right separator"></i>
+                        <div class="breadcrumb-item">
+                            <i class="pi pi-folder-open"></i>
+                            <span>File Manager</span>
+                        </div>
+                    </div>
+                    <h2 class="drawer-title"></h2>
+                    <button class="close-button" onclick="closePanel()">
+                        <i class="pi pi-times"></i>
+                    </button>
+                </div>
+                <div id="sidePanelContent"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridOptions = {
+                columnDefs: [
+                    { 
+                        field: 'name',
+                        headerName: 'System Hierarchy',
+                        cellRenderer: 'agGroupCellRenderer',
+                        showRowGroup: true,
+                        flex: 1,
+                        cellRendererParams: {
+                            suppressCount: true,
+                            suppressDoubleClickExpand: true,
+                            innerRenderer: (params) => params.value
+                        }
+                    }
+                ],
+                defaultColDef: {
+                    sortable: true,
+                    filter: true,
+                    resizable: true,
+                    flex: 1
+                },
+                groupDefaultExpanded: -1,
+                rowSelection: 'single',
+                suppressGroupHideOpenParents: true,
+                onGridSizeChanged: function(params) {
+                    params.api.sizeColumnsToFit();
+                },
+                onRowClicked: function(params) {
+                    const sidePanel = document.getElementById('sidePanel');
+                    sidePanel.classList.add('open');
+                    
+                    // Get parent nodes for breadcrumb
+                    let node = params.node;
+                    let breadcrumbs = [];
+                    while (node.parent && node.parent.level !== -1) {
+                        breadcrumbs.unshift(node.parent.data.name);
+                        node = node.parent;
+                    }
+                    
+                    // Update breadcrumbs
+                    const breadcrumbContainer = document.querySelector('.breadcrumb-container');
+                    breadcrumbContainer.innerHTML = breadcrumbs.map((crumb, index) => `
+                        <div class="breadcrumb-item">
+                            <span>${crumb}</span>
+                        </div>
+                        ${index < breadcrumbs.length - 1 ? '<i class="pi pi-angle-right separator"></i>' : ''}
+                    `).join('');
+                    
+                    document.querySelector('.drawer-title').textContent = params.data.name;
+                    
+                    const content = document.getElementById('sidePanelContent');
+                    content.innerHTML = `
+                        <div class="detail-item">
+                            <div class="detail-label">Type</div>
+                            <div class="detail-value">${params.data.type || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Location</div>
+                            <div class="detail-value">${params.data.location || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Location & Access Notes</div>
+                            <div class="detail-value">${params.data.locationNotes || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Component Notes</div>
+                            <div class="detail-value">${params.data.componentNotes || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Tag Reference</div>
+                            <div class="detail-value">${params.data.tagReference || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Last Inspection Date</div>
+                            <div class="detail-value">${params.data.lastInspectionDate || '-'}</div>
+                        </div>
+                        ${params.data.actions ? `
+                            <div class="detail-item">
+                                <div class="detail-label">Actions</div>
+                                <div class="actions-container">
+                                    ${params.data.actions.map(action => `
+                                        <div class="action-card ${action.status}">
+                                            <div class="action-header">
+                                                <div class="action-id">Reg7-1111</div>
+                                                <div class="action-status">${action.status}</div>
+                                            </div>
+                                            <div class="action-title">Broken</div>
+                                            <div class="action-description">${action.description}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                        ${params.data.images ? `
+                        <div class="detail-item">
+                            <div class="detail-label">Images</div>
+                            <div class="detail-value image-gallery">
+                                ${params.data.images.map(img => `
+                                    <img src="./images/component-image.jpg" alt="Component image" class="component-image">
+                                `).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+                    `;
+                },
+                getNodeChildDetails: function(data) {
+                    if (data.children) {
+                        return {
+                            group: true,
+                            children: data.children,
+                            key: data.name,
+                            expanded: true
+                        };
+                    } else {
+                        return null;
+                    }
+                }
+            };
+
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const gridDiv = document.querySelector('#myGrid');
+                    new agGrid.Grid(gridDiv, gridOptions);
+                    gridOptions.api.setRowData(data);
+                });
+        });
+
+        function closePanel() {
+            document.getElementById('sidePanel').classList.remove('open');
+        }
+    </script>
+</body>
+</html>

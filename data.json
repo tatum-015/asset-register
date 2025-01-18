@@ -1,0 +1,270 @@
+[
+  {
+    "name": "Building A",
+    "children": [
+      {
+        "name": "Lifts",
+        "children": [
+          {
+            "name": "Firefighting lift",
+            "children": [
+              {
+                "name": "Fireman (BS 2655-1)",
+                "children": [
+                    {
+                        "name": "Control switch",
+                        "type": "Component",
+                        "location": "Ground floor",
+                        "locationNotes": "Located near main entrance",
+                        "componentNotes": "Regular maintenance required",
+                        "tagReference": "CS-001",
+                        "lastInspectionDate": "2024-02-15",
+                        "images": ["/images/component1.jpg"],
+                        "actions": [
+                            {
+                                "description": "Replace faulty switch mechanism",
+                                "status": "closed",
+                                "dateCreated": "2024-01-15",
+                                "dateClosed": "2024-02-01",
+                                "assignee": "John Smith"
+                            },
+                            {
+                                "description": "Conduct quarterly inspection",
+                                "status": "open",
+                                "dateCreated": "2024-02-15",
+                                "assignee": "unassigned"
+                            }
+                        ]
+                    },
+                  {
+                    "name": "Lift car",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Landing doors",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fire Main",
+        "children": [
+          {
+            "name": "Rising",
+            "children": [
+              {
+                "name": "Wet",
+                "children": [
+                  {
+                    "name": "Outlet valve",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Inlet valve",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Main Inlet valve",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fire Alarm & Detection",
+        "children": [
+          {
+            "name": "BS 5839-1 (Non-domestic)",
+            "children": [
+              {
+                "name": "L1",
+                "children": [
+                  {
+                    "name": "Main panel",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Repeater panel",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Detector",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Sounder",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Manual call point",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Suppression",
+        "children": [
+          {
+            "name": "Automatic Water Sprinkler",
+            "children": [
+              {
+                "name": "System Category L1(2)",
+                "children": [
+                  {
+                    "name": "Main system control",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Control valve",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Smoke control",
+        "children": [
+          {
+            "name": "Automatic operated vent",
+            "children": [
+              {
+                "name": "Natural AOV (Exterior)",
+                "children": [
+                  {
+                    "name": "Principal control panel",
+                    "type": "Component",
+                    "location": "Roof level"
+                  },
+                  {
+                    "name": "Panel",
+                    "type": "Component",
+                    "location": "Roof level"
+                  },
+                  {
+                    "name": "Vent",
+                    "type": "Component",
+                    "location": "Roof level"
+                  },
+                  {
+                    "name": "Test switch",
+                    "type": "Component",
+                    "location": "Roof level"
+                  },
+                  {
+                    "name": "Manual override switch",
+                    "type": "Component",
+                    "location": "Roof level"
+                  },
+                  {
+                    "name": "Fan",
+                    "type": "Component",
+                    "location": "Roof level"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Evacuation alert",
+        "children": [
+          {
+            "name": "Radio",
+            "children": [
+              {
+                "name": "Evacuation alert (BS 8629)",
+                "children": [
+                  {
+                    "name": "Panel enclosure",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Panel",
+                    "type": "Component",
+                    "location": "Ground floor"
+                  },
+                  {
+                    "name": "Doors",
+                    "type": "Doors",
+                    "children": [
+                      {
+                        "name": "Flat Entrance Door",
+                        "type": "Door Assembly",
+                        "children": [
+                          {
+                            "name": "Ironmongery",
+                            "type": "Component",
+                            "location": "Door mounted",
+                            "locationNotes": "Mounted on door leaf",
+                            "componentNotes": "Includes hinges, locks, handles, and closers",
+                            "tagReference": "DOOR-001-IRN",
+                            "lastInspectionDate": "2024-03-15"
+                          },
+                          {
+                            "name": "Strip and Seals",
+                            "type": "Component",
+                            "location": "Door perimeter",
+                            "locationNotes": "Around door edges",
+                            "componentNotes": "Intumescent strips and smoke seals",
+                            "tagReference": "DOOR-001-SEAL",
+                            "lastInspectionDate": "2024-03-15"
+                          },
+                          {
+                            "name": "Frame",
+                            "type": "Component",
+                            "location": "Wall opening",
+                            "locationNotes": "Mounted in structural opening",
+                            "componentNotes": "Door frame and architrave",
+                            "tagReference": "DOOR-001-FRM",
+                            "lastInspectionDate": "2024-03-15"
+                          },
+                          {
+                            "name": "Leaf",
+                            "type": "Component",
+                            "location": "Within frame",
+                            "locationNotes": "Mounted within door frame",
+                            "componentNotes": "Main door panel",
+                            "tagReference": "DOOR-001-LEAF",
+                            "lastInspectionDate": "2024-03-15"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Archivo', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+#myGrid {
+    flex: 1;
+    transition: flex 0.3s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    width: 100% !important;
+}
+
+#sidePanel {
+    width: 0;
+    background-color: #fff;
+    border-left: 1px solid #eaeaea;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sidePanel.open {
+    width: 560px;
+}
+
+.side-panel-content {
+    height: 100vh;
+    overflow-y: auto;
+    padding: 0;
+    width: 560px;
+    font-family: 'Archivo', sans-serif;
+}
+
+.side-panel-content h3 {
+    margin: 0 0 20px 0;
+    font-weight: 500;
+    color: #1a1a1a;
+    font-size: 18px;
+}
+
+/* AG Grid Customizations */
+.ag-theme-balham {
+    --ag-font-family: 'Archivo', sans-serif;
+    --ag-font-size: 13px;
+    --ag-cell-horizontal-padding: 12px;
+    --ag-row-height: 40px;
+}
+
+.ag-theme-balham .ag-header {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.ag-theme-balham .ag-row {
+    border-bottom-color: #f0f0f0;
+}
+
+.ag-theme-balham .ag-row-hover {
+    background-color: #f8f9fa;
+}
+
+.ag-theme-balham .ag-row-selected {
+    background-color: #f0f7ff;
+}
+
+.detail-item {
+    margin-bottom: 16px;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.close-button {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Show button only when panel is open */
+#sidePanel.open .close-button {
+    display: block;
+}
+
+/* Rotate arrow when panel is closed */
+#sidePanel:not(.open) .close-button {
+    transform: rotate(0deg);
+}
+
+.ag-theme-balham .ag-root-wrapper {
+    border: none;
+}
+
+.image-gallery {
+    margin-top: 12px;
+}
+
+.component-image {
+    width: 100%;
+    max-width: 312px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-item {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    margin-bottom: 8px;
+}
+
+.action-item.closed {
+    background-color: #e8f5e9;
+}
+
+.action-item.open {
+    background-color: #fff3e0;
+}
+
+.action-description {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.action-meta {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.drawer-header {
+    background-color: #202228;
+    padding: 24px;
+    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Archivo', sans-serif;
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+}
+
+#sidePanelContent {
+    padding: 24px;
+}
+
+.drawer-title {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 8px 0 0 0;
+    font-family: 'Archivo', sans-serif;
+}
+
+.actions-container {
+    margin-top: 12px;
+}
+
+.action-card {
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.action-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.action-id {
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    color: #666;
+}
+
+.action-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.action-card.open .action-status {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.action-card.closed .action-status {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.action-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.action-description {
+    font-size: 14px;
+    color: #666;
+} 
